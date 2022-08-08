@@ -1,0 +1,11 @@
+.data-table{
+    padding:1vw;
+    text-align:right;
+}
+
+.data-table img{
+    border-radius: 10px;
+    background-color: steelblue;
+    min-height: 200px;
+    min-width: 150px;
+}

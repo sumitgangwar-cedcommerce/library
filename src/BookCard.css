@@ -1,0 +1,19 @@
+.card{
+    width:200px;
+    z-index:0;
+    transition: all 0.3s ease-in-out;
+}
+.card img{
+    background-color: steelblue;
+}
+.card:hover{
+    transition: all 0.3s ease-in-out;
+    z-index:1;
+    transform: scale(1.1);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+@media screen and (max-width:415px) {
+    .card{
+        width: 350px;
+    }
+}
