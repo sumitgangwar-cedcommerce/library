@@ -3,10 +3,18 @@ import './Detail.css'
 
 const Detail = (props) => {
     const [details , setdetails] = useState([])
+  useEffect(() =>{
+    if (props.theme==='dark'){
+        document.getElementById('modal').classList.add('darkModal')
+    } 
+    else{
+        document.getElementById('modal').classList.remove('darkModal')
+    }
+  },[props.theme])
      
   return (
     <div>
-        <table className="data-table">
+        <table className="data-table " id="modal">
             <tr>
                 <td rowspan="5"><img src = {`https://covers.openlibrary.org/b/olid/${props.item.cover_edition_key}-M.jpg`} /></td>
                 <td><h3>{props.item.title}</h3><h5>by:{props.item.author_name}</h5></td>
@@ -22,7 +30,7 @@ const Detail = (props) => {
                 <p className='pages'><b>No. of pages:</b> {props.item.number_of_pages_median}</p>
             </tr>
             <tr>
-                <p><b>Publisher :</b> {props.item.publisher[0]}</p>
+                <p><b>Publisher :</b> {props.item.publisher!==undefined ? props.item.publisher[0] : ''}</p>
             </tr>
             <tr>
 

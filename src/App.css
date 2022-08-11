@@ -4,9 +4,12 @@
 }
 body{
   background-color: white;
+
 }
 .App {
+  min-height: 100vh;
   text-align: center;
+  transition: all 0.5s ease-in-out;
 }
 .top-bar{
   z-index: 1;
@@ -22,6 +25,7 @@ body{
   font-size: 3vw;
   font-variant: small-caps;
   font-stretch: wider;
+  transition: all 0.5s ease-in-out;
 }
 
 .top-bar h1{
@@ -55,6 +59,7 @@ body{
   flex-wrap: wrap;
   justify-content: space-evenly;
   gap:1.5vw;
+  row-gap: 3vw;
 
 }
 .progress{
@@ -64,4 +69,21 @@ body{
 }
 .icon{
   cursor:pointer;
+}
+
+
+.dark{
+  background-color: rgb(60, 60, 60) !important;
+  color: whitesmoke !important;
+  transition: all 0.5s ease-in-out;
+}
+.body{
+  background-color: rgb(106, 102, 102) !important;
+  color: whitesmoke !important;
+  transition: all 0.5s ease-in-out;
+}
+
+#gif{
+  height:60vh;
+  width:30vw;
 }

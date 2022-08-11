@@ -1,5 +1,5 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Modal, Typography } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './BookCard.css'
 import Detail from './Detail'
 
@@ -16,13 +16,26 @@ const style = {
 const BookCard = (props) => {
   const [open , setOpen] = useState(false)
   const [item , setItem] = useState({})
-  console.log(props.arr)
+  const [cl , setCl] = useState('change')
+
+  useEffect(() =>{
+    if (props.theme==='dark'){
+      setCl('darkCard')
+    } 
+    else{
+      setCl('change')
+    }
+  },[props.theme])
+ 
+  
+
   return (
     <>
       {
-        props.arr.length === 0 ? <h1 style={{color:'red'}}>Sorry No Data Found!!!</h1> :
-        props.arr.map((item, i) => 
-          <Card key={i}  className='card'>
+        props.arr.length === 0 ? <h1 style={{color:'red', marginLeft:'auto' , marginRight:'auto'}}>Sorry No Data Found!!!</h1> :
+        props.arr.map((item, i) =>
+        <div  className={cl}>
+          <Card key={i}   className='card'>
             <CardMedia 
               component='img'
               height='200'
@@ -31,26 +44,31 @@ const BookCard = (props) => {
             />
             <CardContent>
               <Typography gutterBottom variant='h6' component='div'>
-                {item.title}
+                {
+                  JSON. stringify(item.title)!=undefined ? (JSON. stringify(item.title)).length <20 ? (JSON. stringify(item.title)).substring(1 , ((JSON. stringify(item.title).length)-2)) :  (JSON. stringify(item.title)).substring(1 , 15) + "..." :  "......."
+                }
               </Typography>
               <Typography variant='body2' color="text.secondry">
-                by: {item.author_name}
+                by: {
+                  JSON. stringify(item.author_name)!=undefined ? (JSON. stringify(item.author_name)).length <20 ? (JSON. stringify(item.author_name)).substring(2 , ((JSON. stringify(item.author_name).length)-2)) :  (JSON. stringify(item.author_name)).substring(2 , 15) + "..." :  "......."
+                }
               </Typography>
             </CardContent>
             <CardActions>
-              <Button  size='small' style={{color: 'steelblue'}} onClick={()=>{setOpen(true);setItem(item);}}>View More</Button>
+              <Button variant='contained'  size='small' style={{color: 'white' , backgroundColor: 'steelblue'}} onClick={()=>{setOpen(true);setItem(item);}}>View More</Button>
             </CardActions>
-          </Card>
+          </Card></div>
         )
       }
+      <div>
       <Modal
         open={open}
         onClose={()=>setOpen(false)}
         >
-        <div id="modal" style={style}>
-          <Detail item={item}/>
+        <div style={style}>
+          <Detail item={item} theme = {props.theme}/>
         </div>
-      </Modal>
+      </Modal></div>
     </>
   )
 }
